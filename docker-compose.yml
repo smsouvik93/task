@@ -1,7 +1,0 @@
-version: '2'
-services:
-  myservice:
-  build:
-    context: .
-    dockerfile: Dockerfile
-  container_name: "K8_Container"
