@@ -1,0 +1,34 @@
+1 apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8appdeploy
+spec:
+  selector:
+    matchLabels:
+      app: k8app       
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: k8app      
+    spec:
+      containers:
+        - name: k8task
+          image: souvik1993/k8task:v1
+          ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8task-service
+spec:
+  selector:
+    app: k8task
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31500
+    type: NodePort  
